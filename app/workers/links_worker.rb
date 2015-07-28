@@ -4,10 +4,13 @@ class LinksWorker
 
 
 	def perform(link_id)
-		@request = Typhoeus.get(link_id, followlocation: true)
-		json = JSON.parse (@request).response_code
-		@res = json
+		#gets site from db #check links
+		#iterates over all links
+		#makes the request
+		#saves response code 
 
 		# snippet.update_attribute(:highlighted_code, request.body)
 	end
+
+
 end

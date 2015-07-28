@@ -1,7 +1,5 @@
 require 'open-uri'
 class LinksController < ApplicationController
-  def show
-  end
 
   def new
   	@site = Site.new
@@ -11,7 +9,11 @@ class LinksController < ApplicationController
   def create
 
   	@links = [] #empty array for the urls on the site
-  	site = Site.create(site_params)
+  	site = Site.create(site_params) #This returns a boolean
+    #if you didn't want to use an instance variable, we would have to assign
+    #a variable to the found instance.. 
+    # --> site = Site.create(site_params)
+
   	@site_url = site.url
   	# @request = Typhoeus.get(@site_url, followlocation: true)
  		
@@ -25,14 +27,12 @@ class LinksController < ApplicationController
   		LinksWorker.perform_async(anchor.attr("href"))
   		end 
   	end
-
   	# @doc.length
-		
-
 		# @x = Nokogiri::HTML(contents)
+  end
 
-
-
+  def show
+    
   end
 
 
